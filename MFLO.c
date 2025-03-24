@@ -37,9 +37,9 @@ void mflo_reg_assm(void) {
 	setBits_num(15, PARAM1.value, 5);
 
 	// Set the funct 
-	setBits_str(5, "010000");
+	setBits_str(5, "010010");
 	// set 25-16 as 0s 
-	setBits_str(10, "000000");
+	setBits_str(25, "000000");
 
 	// set 10-6 as 0s 
 	setBits_str(10, "00000");
