@@ -62,6 +62,27 @@ void mult_reg_assm(void) {
 }
 
 void mult_reg_bin(void) {
-	state = WRONG_COMMAND;
+	// Check op code bits match
+	if (checkBits(31, "000100") != 0 || checkBits(5, "011000") != 0) {
+		state = WRONG_COMMAND;
+		return;
+	}
+
+	/*
+		Obtain values from binary
+	*/
+
+	uint32_t Rs = getBits(25, 5);
+	uint32_t Rt = getBits(20, 5);
+
+	/*
+		Set instruction values
+	*/
+	setOp("MULT");
+	setParam(1, REGISTER, Rs);
+	setParam(2, REGISTER, Rt);
+
+	// Signal decoding done
+	state = COMPLETE_DECODE;
 }
 
