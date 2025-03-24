@@ -47,7 +47,7 @@ void mult_reg_assm(void) {
 	*/
 	
 	// Set opcode
-	setBits_str(31, "000100");
+	setBits_str(31, "000000");
 	// Set funct
 	setBits_str(5, "011000");
 	// Set Rs
@@ -63,7 +63,7 @@ void mult_reg_assm(void) {
 
 void mult_reg_bin(void) {
 	// Check op code bits match
-	if (checkBits(31, "000100") != 0 || checkBits(5, "011000") != 0) {
+	if (checkBits(31, "000000") != 0 || checkBits(5, "011000") != 0) {
 		state = WRONG_COMMAND;
 		return;
 	}
