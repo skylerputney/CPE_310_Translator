@@ -1,6 +1,5 @@
 #include "Instruction.h"
 
-// will do later
 
 void mult_reg_assm(void) {
 	// Checking op code matches
