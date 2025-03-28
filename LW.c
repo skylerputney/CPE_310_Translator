@@ -40,15 +40,15 @@ void lw_immd_assm(void) {
 		return;
 	}
 
-	// Register should be 31 or less
-	if ( PARAM3.value > 31) {
-		state = INVALID_REG;
-		return;
-	}
-
 	// The immediate value is limited to 16 bits, this is 0xFFFF
 	if ( PARAM2.value > 0xFFFF) {
 		state = INVALID_IMMED;
+		return;
+	}
+
+	// Register should be 31 or less
+	if ( PARAM3.value > 31) {
+		state = INVALID_REG;
 		return;
 	}
 	
