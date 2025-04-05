@@ -18,6 +18,16 @@ void mfhi_reg_assm(void) {
 		return;
 	}
 
+	if (PARAM2.type != EMPTY) {
+		state = UNEXPECTED_PARAM;
+		return;
+	}
+
+	if (PARAM3.type != EMPTY) {
+		state = UNEXPECTED_PARAM;
+		return;
+	}
+
 
 	/*
 		Checking the value of parameters
