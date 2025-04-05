@@ -25,6 +25,12 @@ void mult_reg_assm(void) {
 		return;
 	}
 
+	// Third parameter should be empty
+	if (PARAM3.type != EMPTY) {
+		state = UNEXPECTED_PARAM;
+		return;
+	}
+
 	/*
 		Checking paramater values
 	*/
@@ -65,9 +71,15 @@ void mult_reg_assm(void) {
 }
 
 void mult_reg_bin(void) {
-	// Check op code bits match and dead bits are 0
-	if (checkBits(31, "000000") != 0 || checkBits(5, "011000") != 0 || checkBits(15, "0000000000") != 0) {
+	// Check op code bits match
+	if (checkBits(31, "000000") != 0 || checkBits(5, "011000") != 0) {
 		state = WRONG_COMMAND;
+		return;
+	}
+
+	// Ensure dead bits are 0
+	if (checkBits(15, "0000000000") != 0) {
+		state = UNEXPECTED_PARAM;
 		return;
 	}
 
