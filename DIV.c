@@ -30,6 +30,12 @@ void div_reg_assm(void) {
 		return;
 	}
 
+	// No third param
+	if (PARAM3.type != EMPTY) {
+		state = UNEXPECTED_PARAM;
+		return;
+	}
+
 	/*
 		Checking parameter values
 	*/
@@ -69,6 +75,12 @@ void div_reg_bin(void) {
 	// Check opcode bits match
 	if (checkBits(31, "000000") != 0 || checkBits(5, "011010") != 0) {
 		state = WRONG_COMMAND;
+		return;
+	}
+
+	// Ensure dead bits are all 0's
+	if (checkBits(15, "0000000000") != 0) {
+		state = UNEXPECTED_PARAM;
 		return;
 	}
 
