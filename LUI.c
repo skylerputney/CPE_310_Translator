@@ -32,6 +32,12 @@ void lui_immd_assm(void) {
 		return;
 	}
 
+	// No third param
+	if (PARAM3.type != EMPTY) {
+		state = UNEXPECTED_PARAM;
+		return;
+	}
+
 	/*
 		Checking param values
 	*/
@@ -72,6 +78,12 @@ void lui_immd_bin(void) {
 	// Check if opcode bits are correct
 	if (checkBits(31, "001111") != 0) {
 		state = WRONG_COMMAND;
+		return;
+	}
+
+	// Ensure dead bits are all 0's
+	if (checkBits(25, "00000") != 0) {
+		state = UNEXPECTED_PARAM;
 		return;
 	}
 
