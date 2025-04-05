@@ -13,13 +13,13 @@ void mult_reg_assm(void) {
 		Checking parameter types
 	*/
 
-	// First parameter is register
+	// First parameter is register (Rs)
 	if (PARAM1.type != REGISTER) {
 		state = MISSING_REG;
 		return;
 	}
 
-	// Second parameter is register
+	// Second parameter is register (Rt)
 	if (PARAM2.type != REGISTER) {
 		state = MISSING_REG;
 		return;
@@ -47,12 +47,16 @@ void mult_reg_assm(void) {
 	
 	// Set opcode
 	setBits_str(31, "000000");
+
 	// Set funct
 	setBits_str(5, "011000");
+
 	// Set Rs
 	setBits_num(25, PARAM1.value, 5);
+
 	// Set Rt
 	setBits_num(20, PARAM2.value, 5);
+
 	// Set 15-6 as 0s
 	setBits_str(15, "0000000000");
 
@@ -61,8 +65,8 @@ void mult_reg_assm(void) {
 }
 
 void mult_reg_bin(void) {
-	// Check op code bits match
-	if (checkBits(31, "000000") != 0 || checkBits(5, "011000") != 0) {
+	// Check op code bits match and dead bits are 0
+	if (checkBits(31, "000000") != 0 || checkBits(5, "011000") != 0 || checkBits(15, "0000000000") != 0) {
 		state = WRONG_COMMAND;
 		return;
 	}

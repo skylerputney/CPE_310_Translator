@@ -18,13 +18,13 @@ void div_reg_assm(void) {
 		Checking parameter types
 	*/
 
-	// First parameter is register
+	// First parameter is register (Rs)
 	if (PARAM1.type != REGISTER) {
 		state = MISSING_REG;
 		return;
 	}
 
-	// Second parameter is register
+	// Second parameter is register (Rt)
 	if (PARAM2.type != REGISTER) {
 		state = MISSING_REG;
 		return;
@@ -84,10 +84,10 @@ void div_reg_bin(void) {
 	*/
 
 	setOp("DIV");
-	setParam(1, REGISTER, Rs);
-	setParam(2, REGISTER, Rt);
+	setParam(1, REGISTER, Rs); //first source register operand
+	setParam(2, REGISTER, Rt); //second source register operand
 
-	// Signal decoding done
+	// Signal decoding finished
 	state = COMPLETE_DECODE;
 }
 

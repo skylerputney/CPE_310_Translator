@@ -1,6 +1,7 @@
 #include "Instruction.h"
 
 void mfhi_reg_assm(void) {
+	// Checking op code matches 
 	if (strcmp(OP_CODE, "MFHI") != 0) {
 
 		state = WRONG_COMMAND;
@@ -11,7 +12,7 @@ void mfhi_reg_assm(void) {
 		Checking the type of parameters
 	*/
 
-	// The only parameter should be a register
+	// The only parameter should be a register (Rd)
 	if (PARAM1.type != REGISTER) {
 		state = MISSING_REG;
 		return;
@@ -21,6 +22,7 @@ void mfhi_reg_assm(void) {
 	/*
 		Checking the value of parameters
 	*/
+
 	// Rd should be 31 or less
 	if (PARAM1.value > 31) {
 		state = INVALID_REG;
@@ -30,19 +32,23 @@ void mfhi_reg_assm(void) {
 	/*
 	Putting the binary together
 	*/
+
 	// Set the opcode
 	setBits_str(31, "000000");
-	// set rd
+
+	// Set rd
 	setBits_num(15, PARAM1.value, 5);
 
 	// Set the funct 
 	setBits_str(5, "010000");
-	// set 25-16 as 0s 
+
+	// Set 25-16 as 0s 
 	setBits_str(25, "0000000000");
-	// set 10-6 as 0s 
+
+	// Set 10-6 as 0s 
 	setBits_str(10, "00000");
 
-	// tell the system the encoding is done
+	// Signal encoding finished
 	state = COMPLETE_ENCODE;
 }
 
@@ -64,15 +70,18 @@ void mfhi_reg_bin(void) {
 
 	// getBits(start_bit, width)
 	uint32_t Rd = getBits(15, 5);
+
 	/*
-		Setting Instuciton values
+		Setting Instruction values
 	*/
+
 	setOp("MFHI");
+
 	//setParam(param_num, param_type, param_value)
 	setParam(1, REGISTER, Rd); //destination
 
 
-	// tell the system the decoding is done
+	// Signal decoding finished
 	state = COMPLETE_DECODE;
 }
 
