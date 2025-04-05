@@ -53,16 +53,12 @@ void mult_reg_assm(void) {
 	
 	// Set opcode
 	setBits_str(31, "000000");
-
 	// Set funct
 	setBits_str(5, "011000");
-
 	// Set Rs
 	setBits_num(25, PARAM1.value, 5);
-
 	// Set Rt
 	setBits_num(20, PARAM2.value, 5);
-
 	// Set 15-6 as 0s
 	setBits_str(15, "0000000000");
 
@@ -87,6 +83,7 @@ void mult_reg_bin(void) {
 		Obtain values from binary
 	*/
 
+	// getBits(start_bit, width)
 	uint32_t Rs = getBits(25, 5);
 	uint32_t Rt = getBits(20, 5);
 
@@ -94,6 +91,8 @@ void mult_reg_bin(void) {
 		Set instruction values
 	*/
 	setOp("MULT");
+
+	// setParam(param_num, param_type, param_value)
 	setParam(1, REGISTER, Rs);
 	setParam(2, REGISTER, Rt);
 

@@ -87,6 +87,7 @@ void sw_immd_bin(void) {
 		Obtain values from binary
 	*/
 
+	// getBits(start_bit, width)
 	uint32_t Rs = getBits(25, 5);
 	uint32_t Rt = getBits(20, 5);
 	uint32_t offset = getBits(15, 16);
@@ -96,6 +97,8 @@ void sw_immd_bin(void) {
 	*/
 
 	setOp("SW");
+
+	// setParam(param_num, param_type, param_value)
 	setParam(1, REGISTER, Rt); 
 	setParam(2, IMMEDIATE, offset); 
 	setParam(3, REGISTER, Rs); 

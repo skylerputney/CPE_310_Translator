@@ -110,13 +110,11 @@ void sub_reg_bin(void) {
 	setOp("SUB");
 
 	//setParam(param_num, param_type, param_value)
-
 	setParam(1, REGISTER, Rd); //destination
 	setParam(2, REGISTER, Rs); //first source register operand
 	setParam(3, REGISTER, Rt); //second source register operand
 
-
-	// tell the system the decoding is done
+	// Tell the system the decoding is done
 	state = COMPLETE_DECODE;
 }
 

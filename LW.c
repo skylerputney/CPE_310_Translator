@@ -81,6 +81,7 @@ void lw_immd_bin(void) {
 		Obtain values from binary
 	*/
 
+	// getBits(start_bit, width)
 	uint32_t Rs = getBits(25, 5);
 	uint32_t Rt = getBits(20, 5);
 	uint32_t imm16 = getBits(15, 16);
@@ -90,6 +91,8 @@ void lw_immd_bin(void) {
 	*/
 
 	setOp("LW");
+
+	// setParam(param_num, param_type, param_value)
 	setParam(1, REGISTER, Rt);
 	setParam(3, REGISTER, Rs);
 	setParam(2, IMMEDIATE, imm16);

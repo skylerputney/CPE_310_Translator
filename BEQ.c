@@ -67,17 +67,14 @@ void beq_immd_assm(void) {
 
 	// Set the opcode
 	setBits_str(31, "000100");
-
-	// set Rt
+	// Set Rt
 	setBits_num(20, PARAM1.value, 5);
-
-	// set Rs
+	// Set Rs
 	setBits_num(25, PARAM2.value, 5);
-
-	// set offset
+	// Set offset
 	setBits_num(15, PARAM3.value, 16);
 
-	// tell the system the encoding is done
+	// Signal encoding finished
 	state = COMPLETE_ENCODE;
 }
 
@@ -107,7 +104,7 @@ void beq_immd_bin(void) {
 	*/
 
 	setOp("BEQ");
-	//setCond_num(cond);
+
 	//setParam(param_num, param_type, param_value)
 	setParam(1, REGISTER, Rt); // destination
 	setParam(2, REGISTER, Rs); // source register operand

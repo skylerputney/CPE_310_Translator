@@ -58,13 +58,10 @@ void andi_immd_assm(void) {
 
 	// Set opcode
 	setBits_str(31, "001100");
-
 	// Set Rt
 	setBits_num(20, PARAM1.value, 5);
-
 	// Set Rs
 	setBits_num(25, PARAM2.value, 5);
-
 	// Set immediate
 	setBits_num(15, PARAM3.value, 16);
 
@@ -83,6 +80,7 @@ void andi_immd_bin(void) {
 		Obtain values from binary
 	*/
 
+	// getBits(start_bit, width)
 	uint32_t Rs = getBits(25, 5);
 	uint32_t Rt = getBits(20, 5);
 	uint32_t imm16 = getBits(15, 16);
@@ -92,6 +90,8 @@ void andi_immd_bin(void) {
 	*/
 
 	setOp("ANDI");
+
+	// setParam(param_num, param_type, param_value)
 	setParam(1, REGISTER, Rt); 
 	setParam(2, REGISTER, Rs); 
 	setParam(3, IMMEDIATE, imm16);

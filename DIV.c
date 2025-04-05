@@ -88,6 +88,7 @@ void div_reg_bin(void) {
 		Obtain values from binary
 	*/
 
+	// getBits(start_bit, width)
 	uint32_t Rs = getBits(25, 5);
 	uint32_t Rt = getBits(20, 5);
 
@@ -96,6 +97,8 @@ void div_reg_bin(void) {
 	*/
 
 	setOp("DIV");
+
+	// setParam(param_num, param_type, param_value)
 	setParam(1, REGISTER, Rs); //first source register operand
 	setParam(2, REGISTER, Rt); //second source register operand
 

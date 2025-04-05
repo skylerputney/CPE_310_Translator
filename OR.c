@@ -11,19 +11,19 @@ void or_reg_assm(void) {
 		Checking the type of parameters
 	*/
 
-	// param1 should be a register (rd)
+	// param1 should be a register (Rd)
 	if (PARAM1.type != REGISTER) {
 		state = MISSING_REG;
 		return;
 	}
 
-	// param2 should be a register (rs)
+	// param2 should be a register (Rs)
 	if (PARAM2.type != REGISTER) {
 		state = MISSING_REG;
 		return;
 	}
 
-	// param3 should be a register (rt)
+	// param3 should be a register (Rt)
 	if (PARAM3.type != REGISTER) {
 		state = MISSING_REG;
 		return;
@@ -33,19 +33,19 @@ void or_reg_assm(void) {
 		Checking param values
 	*/
 
-	//  rd must be <= 31
+	//  Rd must be <= 31
 	if (PARAM1.value > 31) {
 		state = INVALID_REG;
 		return;
 	}
 
-	// rs must be <= 31
+	// Rs must be <= 31
 	if (PARAM2.value > 31) {
 		state = INVALID_REG;
 		return;
 	}
 
-	// rt must be <= 31
+	// Rt must be <= 31
 	if (PARAM3.value > 31) {
 		state = INVALID_REG;
 		return;
@@ -57,17 +57,13 @@ void or_reg_assm(void) {
 
 	// Setting opcode
 	setBits_num(31, 0, 6);
-
 	// Setting funct
 	setBits_str(5, "100101");
-
-	// Setting rd
+	// Setting Rd
 	setBits_num(15, PARAM1.value, 5);
-
-	// Setting rs
+	// Setting Rs
 	setBits_num(25, PARAM2.value, 5);
-
-	// Setting rt
+	// Setting Rt
 	setBits_num(20, PARAM3.value, 5);
 
 	// Set system state to complete encode
@@ -84,6 +80,8 @@ void or_reg_bin(void) {
 	/*
 		Finding values in binary
 	*/
+
+	// getBits(start_bit, width
 	uint32_t Rd = getBits(15, 5);
 	uint32_t Rs = getBits(25, 5);
 	uint32_t Rt = getBits(20, 5);
@@ -92,6 +90,8 @@ void or_reg_bin(void) {
 		Setting instruction values
 	*/
 	setOp("OR"); // op value
+
+	// setParam(param_num, param_type, param_value)
 	setParam(1, REGISTER, Rd); // destination reg
 	setParam(2, REGISTER, Rs); // source reg
 	setParam(3, REGISTER, Rt); // second source reg
