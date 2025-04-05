@@ -59,11 +59,6 @@ void sw_immd_assm(void) {
 		return;
 	}
 
-	// setBits_str(31, "101010");
-	// setBits_num(15, PARAM1.value, 5);
-	// setBits_num(25, PARAM2.value, 16);
-	// setBits_num(20, PARAM3.value, 5);
-
 	/*
 		Assembling the binary
 	*/

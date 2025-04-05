@@ -69,16 +69,12 @@ void sub_reg_assm(void) {
 
 	// Set the opcode
 	setBits_num(31, 0, 6);
-
 	// Set the funct 
 	setBits_str(5, "100010");
-
 	// set Rd
 	setBits_num(15, PARAM1.value, 5);
-
 	// set Rs
 	setBits_num(25, PARAM2.value, 5);
-
 	// set Rt
 	setBits_num(20, PARAM3.value, 5);
 
@@ -101,18 +97,20 @@ void sub_reg_bin(void) {
 	/*
 		Finding values in the binary
 	*/
+
 	// getBits(start_bit, width)
 	uint32_t Rd = getBits(15, 5);
 	uint32_t Rs = getBits(25, 5);
 	uint32_t Rt = getBits(20, 5);	
 
 	/*
-		Setting Instuciton values
+		Setting Instruction values
 	*/
 
 	setOp("SUB");
-	//setCond_num(cond);
+
 	//setParam(param_num, param_type, param_value)
+
 	setParam(1, REGISTER, Rd); //destination
 	setParam(2, REGISTER, Rs); //first source register operand
 	setParam(3, REGISTER, Rt); //second source register operand
