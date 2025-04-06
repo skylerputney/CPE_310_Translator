@@ -34,6 +34,15 @@ enum command {
 
 /*
     Purpose: Test all possible variations of a 3 register command
+    Params: None
+    Return: None
+*/
+void test3RegCommands(){
+
+}
+
+/*
+    Purpose: Test a variation of a 3 register command
     Params: char* op: string representing command
     Return: None
 */
