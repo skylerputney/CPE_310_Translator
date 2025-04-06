@@ -59,7 +59,7 @@ void testVariations3RegCommand(char* op){
             }
             incReg2();
         }
-        incReg3();
+        incReg1();
     }
 }
 
