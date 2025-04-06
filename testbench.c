@@ -123,30 +123,30 @@ void getRegisterAssmbly(char* dest_buffer, int reg_value){
 
 
 /*
-    Purpose: Increments register 1
+    Purpose: Increments register 1, up to NUM_REGISTERS + 2, allowing for 1 value > allowed
     Params: None
     Return: None
 */
 void incReg1() {
-    CURR_REG1 = (CURR_REG1 + 1) % NUM_REGISTERS;
+    CURR_REG1 = (CURR_REG1 + 1) % (NUM_REGISTERS + 2);
 }
 
 /*
-    Purpose: Increments register 2
+    Purpose: Increments register 2, up to NUM_REGISTERS + 2, allowing for 1 value > allowed
     Params: None
     Return: None
 */
 void incReg2() {
-    CURR_REG2 = (CURR_REG2 + 1) % NUM_REGISTERS;
+    CURR_REG2 = (CURR_REG2 + 1) % (NUM_REGISTERS + 2);
 }
 
 /*
-    Purpose: Increments register 3
+    Purpose: Increments register 3, up to NUM_REGISTERS + 2, allowing for 1 value > allowed
     Params: None
     Return: None
 */
 void incReg3() {
-    CURR_REG3 = (CURR_REG3 + 1) % NUM_REGISTERS;
+    CURR_REG3 = (CURR_REG3 + 1) % (NUM_REGISTERS + 2);
 }
 
 /*
