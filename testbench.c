@@ -33,11 +33,20 @@ enum command {
 } typedef command;
 
 /*
-    Purpose: Test all possible variations of a 3 register command
+    Purpose: Test all possible variations of all 3 register commands
     Params: None
     Return: None
 */
-void test3RegCommands(){
+void testAll3RegCommands(){
+
+}
+
+/*
+    Purpose: Test all possible variations of a 3 register command
+    Params: char* op: string representing command
+    Return: None
+*/
+void testVariations3RegCommands(char* op){
 
 }
 
