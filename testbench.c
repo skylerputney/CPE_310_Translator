@@ -38,7 +38,11 @@ enum command {
     Return: None
 */
 void testAll3RegCommands(){
-
+    testVariations3RegCommands("ADD");
+    testVariations3RegCommands("SUB");
+    testVariations3RegCommand("AND");
+    testVariations3RegCommand("OR");
+    testVariations3RegCommand("SLT");
 }
 
 /*
@@ -46,8 +50,17 @@ void testAll3RegCommands(){
     Params: char* op: string representing command
     Return: None
 */
-void testVariations3RegCommands(char* op){
-
+void testVariations3RegCommand(char* op){
+    for(int reg1 = 0; reg1 < 33; reg1++) {
+        for(int reg2 = 0; reg2 < 33; reg2++) {
+            for(int reg3 = 0; reg3 < 33; reg3++) {
+                test3RegCommand(op);
+                incReg3();
+            }
+            incReg2();
+        }
+        incReg3();
+    }
 }
 
 /*
@@ -123,7 +136,7 @@ void incReg1() {
     Params: None
     Return: None
 */
-void incReg1() {
+void incReg2() {
     CURR_REG2 = (CURR_REG2 + 1) % NUM_REGISTERS;
 }
 
@@ -132,7 +145,7 @@ void incReg1() {
     Params: None
     Return: None
 */
-void incReg1() {
+void incReg3() {
     CURR_REG3 = (CURR_REG3 + 1) % NUM_REGISTERS;
 }
 
