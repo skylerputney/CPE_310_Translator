@@ -66,25 +66,50 @@ void validateParams(InstructionInfo instr){
         case INSTR_3_REG:
             if(instr.params.r1 < 0 || instr.params.r2 < 0 || instr.params.r3 < 0)
                 assert(state == MISSING_PARAM);
-            if(instr.params.r1 > 31 || instr.params.r2 > 31 || instr.params.r3 > 31)
+            if(instr.params.r1 > NUM_REGISTERS - 1 || instr.params.r2 > NUM_REGISTERS - 1 || instr.params.r3 > NUM_REGISTERS - 1)
                 assert(state == INVALID_REG);
+            //if(instr.params.immd != -1)
+                //assert(state == MISSING_REG)
             break;
         case INSTR_2_REG:
             if(instr.params.r3 != -1)
                 assert(state == UNEXPECTED_PARAM);
             if(instr.params.r1 < 0 || instr.params.r2 < 0)
                 assert(state == MISSING_PARAM);
-            if(instr.params.r1 > 31 || instr.params.r2 > 31)
+            if(instr.params.r1 > NUM_REGISTERS - 1 || instr.params.r2 > NUM_REGISTERS - 1)
                 assert(state == INVALID_REG);
             break;
         case INSTR_1_REG:
-        if(instr.params.r2 != -1 || instr.params.r3 != -1)
-            assert(state == UNEXPECTED_PARAM);
+            if(instr.params.r2 != -1 || instr.params.r3 != -1)
+                assert(state == UNEXPECTED_PARAM);
             if(instr.params.r1 < 0)
                 assert(state == MISSING_PARAM);
-            if(instr.params.r1 > 31)
+            if(instr.params.r1 > NUM_REGISTERS - 1)
                 assert(state == INVALID_REG);
             break;
+        case INSTR_2_REG_1_IMMD:
+            if(instr.params.r1 < 0 || instr.params.r2 < 0 || instr.params.immd < 0)
+                assert(state == MISSING_PARAM);
+            if(instr.params.r1 > NUM_REGISTERS - 1 || instr.params.r2 > NUM_REGISTERS - 1)
+                assert(state == INVALID_REG);
+            if(instr.params.r3 > MAX_IMM_VALUE)
+                assert(state == INVALID_IMMED);
+            break;
+        case INSTR_1_REG_1_IMMD:
+            if(instr.params.r1 < 0 || instr.params.immd < 0)
+                assert(state == MISSING_PARAM);
+            if(instr.params.r1 > NUM_REGISTERS - 1)
+                assert(state == INVALID_REG);
+            if(instr.params.r2 > MAX_IMM_VALUE)
+                assert(state == INVALID_IMMED);
+            break;
+        case INSTR_MEM:
+            if(instr.params.r1 < 0 || instr.params.immd < 0 || instr.params.r3 < 0)
+                assert(state == MISSING_PARAM);
+            if(instr.params.r1 > NUM_REGISTERS - 1 || instr.params.r3 > NUM_REGISTERS - 1)
+                assert(state == INVALID_REG);
+            if(instr.params.r2 > MAX_IMM_VALUE)
+                assert(state == INVALID_IMMED);
     }
 }
 
