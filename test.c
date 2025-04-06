@@ -68,6 +68,7 @@ void validateParams(InstructionInfo instr){
                 assert(state == MISSING_PARAM);
             if(instr.params.r1 > 31 || instr.params.r2 > 31 || instr.params.r3 > 31)
                 assert(state == INVALID_REG);
+            break;
         case INSTR_2_REG:
             if(instr.params.r3 != -1)
                 assert(state == UNEXPECTED_PARAM);
@@ -75,6 +76,15 @@ void validateParams(InstructionInfo instr){
                 assert(state == MISSING_PARAM);
             if(instr.params.r1 > 31 || instr.params.r2 > 31)
                 assert(state == INVALID_REG);
+            break;
+        case INSTR_1_REG:
+        if(instr.params.r2 != -1 || instr.params.r3 != -1)
+            assert(state == UNEXPECTED_PARAM);
+            if(instr.params.r1 < 0)
+                assert(state == MISSING_PARAM);
+            if(instr.params.r1 > 31)
+                assert(state == INVALID_REG);
+            break;
     }
 }
 
