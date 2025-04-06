@@ -8,7 +8,6 @@ int CURR_REG2 = 0;
 int CURR_REG3 = 0;
 int CURR_IMM = 0;
 
-int CURR_INSTR = 0;
 
 /*
     Represents the type of instruction based on parameters
@@ -60,7 +59,32 @@ InstructionInfo allInstructions[NUM_INSTRUCTIONS] = {
 };
 
 void validateParams(void);
+void testAllInstructions(void);
 
+/*
+    Purpose: Test all possible instruction variations
+*/
+void testAllInstructions(void){
+    for(int instruction = 0; instruction < NUM_INSTRUCTIONS; instruction++){
+        InstructionInfo curr_instr = allInstructions[instruction];
+        for(int reg1 = -1; reg1 < NUM_REGISTERS + 1; reg1++){
+            for(int reg2 = -1; reg2 < NUM_REGISTERS + 1; reg2++){
+                for(int reg3 = -1; reg3 < NUM_REGISTERS + 1; reg3++){
+                    for(int immd = -1; immd < MAX_IMM_VALUE + 2; immd++){
+                        curr_instr.params.r1 = reg1;
+                        curr_instr.params.r2 = reg2;
+                        curr_instr.params.r3 = reg3;
+                        curr_instr.params.immd = immd;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*
+    Purpose: Validate any instruction error states
+*/
 void validateParams(InstructionInfo instr){
     switch(instr.type){
         case INSTR_3_REG:
