@@ -1,14 +1,16 @@
 #include "MIPS_Interpreter.h"
-NUM_REGISTERS = 32;
-MAX_IMM_VALUE = 0xFFFF;
-NUM_COMMANDS = 18;
+#include "testbenchheader.h"
+#include <assert.h>
+int NUM_REGISTERS = 32;
+int MAX_IMM_VALUE = 0xFFFF;
+int NUM_COMMANDS = 18;
 
-CURR_REG1 = 0;
-CURR_REG2 = 0;
-CURR_REG3 = 0;
-CURR_IMM = 0;
+int CURR_REG1 = 0;
+int CURR_REG2 = 0;
+int CURR_REG3 = 0;
+int CURR_IMM = 0;
 
-CURR_CMD = 0;
+int CURR_CMD = 0;
 
 // Represent commands
 enum command {
@@ -38,8 +40,8 @@ enum command {
     Return: None
 */
 void testAll3RegCommands(){
-    testVariations3RegCommands("ADD");
-    testVariations3RegCommands("SUB");
+    testVariations3RegCommand("ADD");
+    testVariations3RegCommand("SUB");
     testVariations3RegCommand("AND");
     testVariations3RegCommand("OR");
     testVariations3RegCommand("SLT");
@@ -76,7 +78,7 @@ void test3RegCommand(char* op){
         // Parse instruction
 		parseAssem(instruction);
 
-        ensureRegistersInvalid();
+        ensureRegistersValid();
 
 		// Encode if no error
 		if (state == NO_ERROR) {
@@ -118,7 +120,7 @@ void assemble3RegCommand(char* dest_buffer, char* op){
     Return: None
 */
 void getRegisterAssmbly(char* dest_buffer, int reg_value){
-    sprintf(dest_buffer, "$t%d", reg_value)
+    sprintf(dest_buffer, "$t%d", reg_value);
 }
 
 
@@ -195,9 +197,9 @@ void ensureReg3Valid(){
 }
 
 void ensureRegistersValid(){
-    ensureReg1Invalid();
-    ensureReg2Invalid();
-    ensureReg3Invalid();
+    ensureReg1Valid();
+    ensureReg2Valid();
+    ensureReg3Valid();
 }
 
 void ensureImmValid(){
