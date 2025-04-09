@@ -1,4 +1,5 @@
 #include "MIPS_Interpreter.h"
+#include <assert.h>
 #define NUM_REGISTERS 32
 #define MAX_IMM_VALUE 0xFFFF
 #define NUM_INSTRUCTIONS 18
@@ -58,7 +59,7 @@ InstructionInfo allInstructions[NUM_INSTRUCTIONS] = {
     {"SW", INSTR_MEM, {0, 0, 0, 0}},
 };
 
-void validateParams(void);
+void validateParams(InstructionInfo instr);
 void testAllInstructions(void);
 const char* num2reg(int num);
 void assembleRightParamTypeInstruction(InstructionInfo instr, char* dest_buffer);
